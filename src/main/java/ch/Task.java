@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Task {
     private String title;
     private String description;
-    private LocalDate dueDate;
     private Category category;
+    private LocalDate dueDate;
 
     public Task(String title, String description, Category category, LocalDate dueDate) {
         this.title = title;
@@ -52,4 +52,3 @@ public class Task {
         return title + " (" + category.getName() + ") - Due: " + dueDate;
     }
 }
-

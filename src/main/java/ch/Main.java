@@ -1,13 +1,13 @@
 package ch;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.time.LocalDate;
-import java.util.Locale.Category;
-import java.io.IOException;
 
 public class Main extends Application {
     private TaskManager taskManager = new TaskManager();
@@ -60,6 +60,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        System.out.println("Projekt gestartet");
         launch(args);
     }
 }
