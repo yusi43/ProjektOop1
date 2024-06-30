@@ -11,9 +11,14 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Category category = new Category("Schule");
-        Task task = new Task("Hausaufgaben", "Mathe machen", category, LocalDate.now().plusDays(1));
-        System.out.println(task);
-        System.out.println(category);
+        TaskManager taskManager = new TaskManager();
+        taskManager.addTask(new Task("Hausaufgaben", "Mathe machen", new Category("Schule"), LocalDate.now().plusDays(1)));
+        taskManager.addTask(new Task("Einkaufen", "Milch und Brot kaufen", new Category("Einkauf"), LocalDate.now().plusDays(2)));
+
+        for (Task task : taskManager.getTasks()) {
+            if (task.getTitle().contains("Haus")) {
+                System.out.println(task);
+            }
+        }
     }
 }

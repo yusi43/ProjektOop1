@@ -15,6 +15,10 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public Task(String title2, String description2, java.util.Locale.Category category2, LocalDate plusDays) {
+
+    }
+
     public String getTitle() {
         return title;
     }
