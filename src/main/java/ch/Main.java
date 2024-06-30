@@ -2,10 +2,8 @@ package ch;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -14,7 +12,60 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Dummy categories
+        showLoginScreen(primaryStage);
+    }
+
+    private void showLoginScreen(Stage primaryStage) {
+        primaryStage.setTitle("Login");
+
+        GridPane grid = new GridPane();
+        grid.setVgap(10);
+        grid.setHgap(10);
+
+        Label nameLabel = new Label("Name:");
+        grid.add(nameLabel, 0, 0);
+
+        TextField nameField = new TextField();
+        grid.add(nameField, 1, 0);
+
+        Label passwordLabel = new Label("Passwort:");
+        grid.add(passwordLabel, 0, 1);
+
+        PasswordField passwordField = new PasswordField();
+        grid.add(passwordField, 1, 1);
+
+        Button loginButton = new Button("Login");
+        grid.add(loginButton, 1, 2);
+
+        loginButton.setOnAction(event -> {
+            String name = nameField.getText();
+            String password = passwordField.getText();
+
+            if (name.matches(".*\\d.*")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Fehler");
+                alert.setHeaderText("Ungültiger Name");
+                alert.setContentText("Der Name darf keine Zahlen enthalten.");
+                alert.showAndWait();
+            } else if (password.length() < 6) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Fehler");
+                alert.setHeaderText("Ungültiges Passwort");
+                alert.setContentText("Das Passwort muss mindestens 6 Zeichen lang sein.");
+                alert.showAndWait();
+            } else {
+                showMainScreen(primaryStage);
+            }
+        });
+
+        Scene scene = new Scene(grid, 300, 200);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void showMainScreen(Stage primaryStage) {
+        primaryStage.setTitle("To-Do Liste");
+
         taskManager.addCategory(new Category("Arbeit"));
         taskManager.addCategory(new Category("Privat"));
 
@@ -55,12 +106,10 @@ public class Main extends Application {
         Scene scene = new Scene(vbox, 400, 300);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("To-Do Liste");
         primaryStage.show();
     }
 
     public static void main(String[] args) {
-        System.out.println("Projekt gestartet");
         launch(args);
     }
 }
