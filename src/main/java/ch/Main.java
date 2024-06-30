@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Task task = new Task("Hausaufgaben", "Mathe machen", new Category("Schule"), LocalDate.now().plusDays(1));
         Category category = new Category("Schule");
+        Task task = new Task("Hausaufgaben", "Mathe machen", category, LocalDate.now().plusDays(1));
         System.out.println(task);
         System.out.println(category);
     }
